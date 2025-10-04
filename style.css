@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #222;
+    overflow: hidden;
+    user-select: none;
+}
+
+#scoreBoard, #livesBoard {
+    position: fixed;
+    top: 10px;
+    font-size: 24px;
+    color: white;
+    z-index: 1000;
+}
+#livesBoard { left: 200px; }
+
+.game {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.item {
+    position: absolute;
+    bottom: 0;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: 0.9;
+    /* font-size: 30px; */
+    /* transition: transform 0.2s, opacity 0.2s; */
+}
+
+.slice-line {
+    position: absolute;
+    background: rgba(255,255,255,0.5);
+    height: 4px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 1000;
+}
