@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Fruit Slice">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <style>
+      body {
+          -webkit-tap-highlight-color: transparent;
+      }
+  </style>
+    <title>Fruit Game</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="scoreBoard">점수: 0</div>
+    <div id="livesBoard">목숨: 3</div>
+    <div class="game">
+        <div class="item apple" style="display: none;"><img src="images/apple.png" alt="사과"></div>
+        <div class="item strawberry" style="display: none;"><img src="images/strawberry.png" alt="딸기"></div>
+        <div class="item grape" style="display: none;"><img src="images/cherry.png" alt="체리"></div>
+        <div class="item bomb" style="display: none;"><img src="images/grape.png" alt="포도"></div>
+    </div>
+
+
+    <script src="script.js"></script>
+  </body>
+</html>
