@@ -23,7 +23,7 @@ const weightedTemplates = Array.from(templates);
 weightedTemplates.push(appleTemplate, appleTemplate, appleTemplate);
 // (사과 4, 다른 아이템 각 1)
 
-// 물리 상수 정의
+//물리 상수 정의️
 const GRAVITY = 0.4; // 중력 가속도
 const INITIAL_Y_SPEED = 14; // 초기 수직 속도
 const MAX_X_SPEED = 4; // 최대 수평 속도
@@ -148,6 +148,13 @@ document.addEventListener('touchmove', e => {
     e.preventDefault(); 
 }, { passive: false }); // passive: false를 사용하여 preventDefault()가 작동하게 함
 
+document.addEventListener('touchend', () => {
+    // 터치가 끝나면 lastMouse와 mouse 좌표를 동일하게 설정하여,
+    // 다음 터치 이동 시작 시 엉뚱한 선이 그어지는 것을 방지합니다.
+    lastMouse.x = mouse.x;
+    lastMouse.y = mouse.y;
+});
+
 // 선-점 거리 계산 함수 (유지)
 function pointLineDistance(px, py, x1, y1, x2, y2) {
     const A = px - x1, B = py - y1, C = x2 - x1, D = y2 - y1;
@@ -186,7 +193,7 @@ function spawnItem() {
     newItem.style.bottom = `${posY}px`;
     game.appendChild(newItem);
 
-    //포물선 운동 변수 초기화
+    //포물선 운동 변수 초기화 
     // 수직 속도는 일정하게 위로 쏘고, 수평 속도는 랜덤하게 좌우로 설정
     let velocityY = INITIAL_Y_SPEED + Math.random() * 6; 
     let velocityX = (Math.random() - 0.5) * MAX_X_SPEED * 2; // -MAX_X_SPEED 에서 +MAX_X_SPEED 사이
@@ -251,5 +258,4 @@ function drawSliceLine(x1, y1, x2, y2) {
 // 화면 크기 변경 시 대응 (유지)
 window.addEventListener('resize', () => {
     // window.innerHeight 사용 → 자동 적용
-
 });
