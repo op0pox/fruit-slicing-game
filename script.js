@@ -23,7 +23,7 @@ const weightedTemplates = Array.from(templates);
 weightedTemplates.push(appleTemplate, appleTemplate, appleTemplate);
 // (사과 4, 다른 아이템 각 1)
 
-// ⭐️⭐️ 물리 상수 정의 ⭐️⭐️
+//물리 상수 정의
 const GRAVITY = 0.4; // 중력 가속도
 const INITIAL_Y_SPEED = 14; // 초기 수직 속도
 const MAX_X_SPEED = 4; // 최대 수평 속도
@@ -123,8 +123,8 @@ document.addEventListener('touchmove', e => {
 
             let isProcessed = true; 
             if (item.classList.contains(BOMB)) { lives--; } 
-            else if (GOOD_FRUITS.some(c => item.classList.contains(c))) { score++; } 
-            else if (BAD_FRUITS.some(c => item.classList.contains(c))) { score--; } 
+            else if (GOOD_FRUITS.some(c => item.classList.contains(c))) { score=score+50; } 
+            else if (BAD_FRUITS.some(c => item.classList.contains(c))) { score=score-10; } 
             else { isProcessed = false; }
             if (!isProcessed) return;
 
@@ -169,7 +169,7 @@ function pointLineDistance(px, py, x1, y1, x2, y2) {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
-// 아이템 생성 (⭐️⭐️ 포물선 운동 로직 적용 ⭐️⭐️)
+// 아이템 생성 (포물선 운동 로직 적용)
 function spawnItem() {
     if (gameOver) return;
 
@@ -193,7 +193,7 @@ function spawnItem() {
     newItem.style.bottom = `${posY}px`;
     game.appendChild(newItem);
 
-    // ⭐️⭐️ 포물선 운동 변수 초기화 ⭐️⭐️
+    //포물선 운동 변수 초기화
     // 수직 속도는 일정하게 위로 쏘고, 수평 속도는 랜덤하게 좌우로 설정
     let velocityY = INITIAL_Y_SPEED + Math.random() * 6; 
     let velocityX = (Math.random() - 0.5) * MAX_X_SPEED * 2; // -MAX_X_SPEED 에서 +MAX_X_SPEED 사이

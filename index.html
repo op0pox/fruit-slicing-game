@@ -1,35 +1,157 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+        }
 
-    <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Fruit Slice">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
 
-  <style>
-      body {
-          -webkit-tap-highlight-color: transparent;
-      }
-  </style>
-    <title>Fruit Game</title>
+        #login {
+            background-color: rgb(236, 239, 245);
+            border-radius: 10px;
+            margin: 15% auto;
+            padding: 20px 30px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        h1 { text-align: center; }
+        h2 { text-align: center; margin-top: 0; margin-bottom: 20px; }
 
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div id="scoreBoard">점수: 0</div>
-    <div id="livesBoard">목숨: 3</div>
-    <div class="game">
-        <div class="item apple" style="display: none;"><img src="images/apple.png" alt="사과"></div>
-        <div class="item strawberry" style="display: none;"><img src="images/strawberry.png" alt="딸기"></div>
-        <div class="item grape" style="display: none;"><img src="images/cherry.png" alt="체리"></div>
-        <div class="item bomb" style="display: none;"><img src="images/grape.png" alt="포도"></div>
+        input[type="text"], input[type="tel"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            margin: 15px 0 0 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%; /* 로그인 폼 안의 버튼은 100% */
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-button:hover, .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        img {
+            width: 100px;
+            height: auto;
+        }
+        
+        /* ❗ id를 class 선택자로 변경 */
+        .fruit {
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        /* '로그인하기' 버튼을 감싸는 div */
+        #btn-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* '로그인하기' 버튼만 너비 따로 지정 */
+        #openModalBtn {
+            width: 50%;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="rule-container">
+        <h1>규칙 설명</h1>
+        <div class="fruit"><img src="images/apple.png">점수 +50</div>
+        <div class="fruit"><img src="images/cherry.png">점수 -10</div>
+        <div class="fruit"><img src="images/strawberry.png">점수 -10</div>
+        <div class="fruit"><img src="images/grape.png">목숨 -1</div>
+        
+        <div id="btn-container">
+            <button id="openModalBtn">시작하기</button>
+        </div>
     </div>
 
+    <div id="myModal" class="modal">
+        <div id="login">
+            <span class="close-button">&times;</span>
+            <h2>로그인</h2>
+            <div>
+                <label for="username">이름:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="phone">전화번호:</label>
+                <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required>
+            </div>
+            <div>
+                <button type="button" onclick="location.href='game.html'">게임 시작</button>
+            </div>
+        </div>  
+    </div>
 
-    <script src="script.js"></script>
-  </body>
+    <script>
+        const modal = document.getElementById("myModal");
+        const openBtn = document.getElementById("openModalBtn");
+        const closeBtn = document.getElementsByClassName("close-button")[0];
+
+        openBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
 </html>
